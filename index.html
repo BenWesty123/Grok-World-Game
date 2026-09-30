@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fifteen Minutes — Name every country</title>
+  <meta name="description" content="You have 15 minutes to name every country. A question mark marks each one until you guess it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;1,9..144,560&family=Outfit:wght@420;560;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <p class="kicker">World quiz</p>
+      <h1>Fifteen Minutes</h1>
+    </div>
+    <div class="timer">
+      <span class="time" id="time">15:00</span>
+      <span class="time-label">remaining</span>
+    </div>
+    <div class="scorebox">
+      <div class="score-readout">
+        <span class="score" id="score">0</span>
+        <span class="score-label">/ <span id="total">197</span></span>
+      </div>
+      <button type="button" class="ghost" id="end-btn" disabled>End game</button>
+      <button type="button" class="ghost hidden" id="results-btn">Results</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="map-card" aria-label="World map">
+      <svg id="map" role="img" aria-label="World map. Each country is marked until you name it.">
+        <g id="world"></g>
+      </svg>
+      <div class="legend">
+        <span><i class="swatch q"></i>Still to name</span>
+        <span><i class="swatch found"></i>Named</span>
+        <span id="legend-miss" class="hidden"><i class="swatch miss"></i>Missed</span>
+      </div>
+      <div class="map-tools">
+        <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+        <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+        <button type="button" id="zoom-reset" aria-label="Reset the map view">⌂</button>
+      </div>
+      <p class="map-hint">Scroll to zoom. Drag to move.</p>
+    </section>
+
+    <form id="guess-form" class="guess" autocomplete="off">
+      <div class="guess-row">
+        <label for="guess" class="sr-only">Country name</label>
+        <input id="guess" name="country-guess" type="text" placeholder="Name a country" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" disabled>
+        <button type="submit" id="guess-btn" disabled>Guess</button>
+      </div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </form>
+
+    <section class="progress">
+      <div class="progress-head">
+        <h2>By continent</h2>
+        <p>Each column is a continent. Empty cells are countries you haven't named. A name fills its cell when you get it right.</p>
+      </div>
+      <div class="board-wrap">
+        <div class="board" id="board"></div>
+      </div>
+      <p class="foot">197 countries: the UN members, plus Vatican City, Palestine, Kosovo, and Taiwan. Territories are drawn with their country. Map shapes from Natural Earth.</p>
+    </section>
+  </main>
+
+  <div class="overlay" id="intro">
+    <div class="card">
+      <p class="kicker">A blank atlas</p>
+      <h2>Name them all.</h2>
+      <p id="intro-copy">You have 15 minutes to name all <span id="intro-total">197</span> countries. A question mark sits on each one until you get it. Zoom and drag to reach the small ones. Territories count with their country.</p>
+      <button type="button" class="primary" id="start-btn" disabled>Start the clock</button>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="results">
+    <div class="card wide" role="dialog" aria-labelledby="results-heading">
+      <div id="results-body"></div>
+      <div class="card-actions">
+        <button type="button" class="primary" id="review-btn">Review the map</button>
+        <button type="button" class="ghost" id="again-btn">Play again</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/game.mjs"></script>
+</body>
+</html>
