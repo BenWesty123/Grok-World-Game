@@ -344,7 +344,12 @@ button, input { font: inherit; }
   background: rgba(255, 255, 255, 0.02);
 }
 
-.continent { min-width: 0; }
+.continent {
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.continent + .continent { box-shadow: inset 1px 0 0 var(--line); }
 
 .continent header {
   position: sticky;
@@ -375,8 +380,11 @@ button, input { font: inherit; }
 
 .cell {
   min-height: 28px;
-  padding: 5px 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.045);
+  margin: 4px 8px;
+  padding: 5px 8px;
+  border: 1px dashed rgba(244, 239, 228, 0.16);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.035);
   color: transparent;
   font-size: 0.86rem;
   line-height: 1.25;
@@ -384,7 +392,9 @@ button, input { font: inherit; }
 
 .cell.found {
   color: var(--ink);
-  background: rgba(228, 194, 122, 0.12);
+  background: rgba(228, 194, 122, 0.16);
+  border-style: solid;
+  border-color: rgba(228, 194, 122, 0.45);
 }
 
 .foot {
