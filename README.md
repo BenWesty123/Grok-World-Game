@@ -1,10 +1,10 @@
 # Fifteen Minutes
 
-A browser game: you have 15 minutes to name every country in the world.
+A browser game: you have 15 minutes to name every country in the world, or the capital city of every country.
 
-A question mark marks each country that is still open. A correct guess replaces it with the name and fills that country's cell in the continent table. Scroll to zoom and drag to pan, which is how the small ones become readable. When the clock ends, you get your score and the full list of countries you missed.
+The home page chooses the round. A question mark marks each country that is still open. A correct guess replaces it with the country or the capital and fills that cell in the continent table. Scroll to zoom and drag to pan, which is how the small ones become readable. When the clock ends, you get your score and the full list of what you missed.
 
-The quiz has 197 countries: the UN members, plus Vatican City, Palestine, Kosovo, and Taiwan. Dependent territories are drawn as part of the country that governs them.
+The quiz has 197 countries: the UN members, plus Vatican City, Palestine, Kosovo, and Taiwan. Dependent territories are drawn as part of the country that governs them. In the capitals round, a country with more than one capital accepts any of the listed names.
 
 ## Play
 
@@ -23,6 +23,7 @@ Country shapes come from [Natural Earth](https://www.naturalearthdata.com/) 50m 
 ```bash
 python3 scripts/build_world.py
 node scripts/test_match.mjs
+node scripts/test_capitals.mjs
 ```
 
 The generator expects the Natural Earth file at `/tmp/ne50.geojson`, or at the path in `NE_GEOJSON`.

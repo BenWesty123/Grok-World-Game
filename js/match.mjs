@@ -11,7 +11,7 @@ export function normalize(raw) {
   return s;
 }
 
-function expandKeys(raw) {
+export function expandKeys(raw) {
   const n = normalize(raw);
   if (!n) return [];
   const keys = new Set([n]);

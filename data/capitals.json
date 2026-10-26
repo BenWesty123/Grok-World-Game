@@ -1,0 +1,906 @@
+{
+  "capitals": {
+    "USA": {
+      "name": "Washington, D.C.",
+      "aliases": [
+        "Washington",
+        "Washington DC",
+        "Washington D.C.",
+        "District of Columbia"
+      ],
+      "short": "Washington"
+    },
+    "FRA": {
+      "name": "Paris",
+      "aliases": []
+    },
+    "RUS": {
+      "name": "Moscow",
+      "aliases": []
+    },
+    "GBR": {
+      "name": "London",
+      "aliases": []
+    },
+    "NZL": {
+      "name": "Wellington",
+      "aliases": []
+    },
+    "CAN": {
+      "name": "Ottawa",
+      "aliases": []
+    },
+    "DNK": {
+      "name": "Copenhagen",
+      "aliases": []
+    },
+    "KIR": {
+      "name": "Tarawa",
+      "aliases": [
+        "South Tarawa"
+      ]
+    },
+    "AUS": {
+      "name": "Canberra",
+      "aliases": []
+    },
+    "NLD": {
+      "name": "Amsterdam",
+      "aliases": []
+    },
+    "FJI": {
+      "name": "Suva",
+      "aliases": []
+    },
+    "NOR": {
+      "name": "Oslo",
+      "aliases": []
+    },
+    "CHN": {
+      "name": "Beijing",
+      "aliases": [
+        "Peking"
+      ]
+    },
+    "CHL": {
+      "name": "Santiago",
+      "aliases": []
+    },
+    "BRA": {
+      "name": "Brasília",
+      "aliases": [
+        "Brasilia"
+      ]
+    },
+    "IND": {
+      "name": "New Delhi",
+      "aliases": [
+        "Delhi"
+      ]
+    },
+    "KAZ": {
+      "name": "Astana",
+      "aliases": [
+        "Nur-Sultan",
+        "Akmola"
+      ]
+    },
+    "ARG": {
+      "name": "Buenos Aires",
+      "aliases": []
+    },
+    "IDN": {
+      "name": "Jakarta",
+      "aliases": []
+    },
+    "ZAF": {
+      "name": "Pretoria",
+      "aliases": [
+        "Cape Town",
+        "Bloemfontein"
+      ]
+    },
+    "MEX": {
+      "name": "Mexico City",
+      "aliases": []
+    },
+    "JPN": {
+      "name": "Tokyo",
+      "aliases": []
+    },
+    "MNG": {
+      "name": "Ulaanbaatar",
+      "aliases": [
+        "Ulan Bator"
+      ]
+    },
+    "ESP": {
+      "name": "Madrid",
+      "aliases": []
+    },
+    "DZA": {
+      "name": "Algiers",
+      "aliases": []
+    },
+    "SWE": {
+      "name": "Stockholm",
+      "aliases": []
+    },
+    "SAU": {
+      "name": "Riyadh",
+      "aliases": []
+    },
+    "COD": {
+      "name": "Kinshasa",
+      "aliases": []
+    },
+    "IRN": {
+      "name": "Tehran",
+      "aliases": [
+        "Teheran"
+      ]
+    },
+    "PRT": {
+      "name": "Lisbon",
+      "aliases": []
+    },
+    "FIN": {
+      "name": "Helsinki",
+      "aliases": []
+    },
+    "MAR": {
+      "name": "Rabat",
+      "aliases": []
+    },
+    "MLI": {
+      "name": "Bamako",
+      "aliases": []
+    },
+    "PAK": {
+      "name": "Islamabad",
+      "aliases": []
+    },
+    "LBY": {
+      "name": "Tripoli",
+      "aliases": []
+    },
+    "SDN": {
+      "name": "Khartoum",
+      "aliases": []
+    },
+    "PER": {
+      "name": "Lima",
+      "aliases": []
+    },
+    "COL": {
+      "name": "Bogotá",
+      "aliases": [
+        "Bogota"
+      ]
+    },
+    "NER": {
+      "name": "Niamey",
+      "aliases": []
+    },
+    "UKR": {
+      "name": "Kyiv",
+      "aliases": [
+        "Kiev"
+      ]
+    },
+    "UZB": {
+      "name": "Tashkent",
+      "aliases": []
+    },
+    "MOZ": {
+      "name": "Maputo",
+      "aliases": []
+    },
+    "MMR": {
+      "name": "Naypyidaw",
+      "aliases": [
+        "Nay Pyi Taw",
+        "Naypyitaw"
+      ]
+    },
+    "NAM": {
+      "name": "Windhoek",
+      "aliases": []
+    },
+    "TCD": {
+      "name": "N'Djamena",
+      "aliases": [
+        "Ndjamena"
+      ]
+    },
+    "ETH": {
+      "name": "Addis Ababa",
+      "aliases": []
+    },
+    "AGO": {
+      "name": "Luanda",
+      "aliases": []
+    },
+    "BOL": {
+      "name": "La Paz",
+      "aliases": [
+        "Sucre"
+      ]
+    },
+    "ITA": {
+      "name": "Rome",
+      "aliases": [
+        "Roma"
+      ]
+    },
+    "MRT": {
+      "name": "Nouakchott",
+      "aliases": []
+    },
+    "AFG": {
+      "name": "Kabul",
+      "aliases": []
+    },
+    "VEN": {
+      "name": "Caracas",
+      "aliases": []
+    },
+    "PNG": {
+      "name": "Port Moresby",
+      "aliases": []
+    },
+    "PHL": {
+      "name": "Manila",
+      "aliases": []
+    },
+    "TUR": {
+      "name": "Ankara",
+      "aliases": []
+    },
+    "SOM": {
+      "name": "Mogadishu",
+      "aliases": []
+    },
+    "TKM": {
+      "name": "Ashgabat",
+      "aliases": [
+        "Ashkhabad"
+      ]
+    },
+    "EGY": {
+      "name": "Cairo",
+      "aliases": []
+    },
+    "MYS": {
+      "name": "Kuala Lumpur",
+      "aliases": [
+        "Putrajaya"
+      ]
+    },
+    "THA": {
+      "name": "Bangkok",
+      "aliases": []
+    },
+    "TZA": {
+      "name": "Dodoma",
+      "aliases": [
+        "Dar es Salaam"
+      ]
+    },
+    "ZMB": {
+      "name": "Lusaka",
+      "aliases": []
+    },
+    "NGA": {
+      "name": "Abuja",
+      "aliases": []
+    },
+    "DEU": {
+      "name": "Berlin",
+      "aliases": []
+    },
+    "CAF": {
+      "name": "Bangui",
+      "aliases": []
+    },
+    "VNM": {
+      "name": "Hanoi",
+      "aliases": []
+    },
+    "FSM": {
+      "name": "Palikir",
+      "aliases": []
+    },
+    "ECU": {
+      "name": "Quito",
+      "aliases": []
+    },
+    "MDG": {
+      "name": "Antananarivo",
+      "aliases": []
+    },
+    "SDS": {
+      "name": "Juba",
+      "aliases": []
+    },
+    "IRQ": {
+      "name": "Baghdad",
+      "aliases": []
+    },
+    "POL": {
+      "name": "Warsaw",
+      "aliases": []
+    },
+    "BWA": {
+      "name": "Gaborone",
+      "aliases": []
+    },
+    "CMR": {
+      "name": "Yaoundé",
+      "aliases": [
+        "Yaounde"
+      ]
+    },
+    "YEM": {
+      "name": "Sana'a",
+      "aliases": [
+        "Sanaa",
+        "Aden"
+      ]
+    },
+    "OMN": {
+      "name": "Muscat",
+      "aliases": []
+    },
+    "KEN": {
+      "name": "Nairobi",
+      "aliases": []
+    },
+    "ISL": {
+      "name": "Reykjavík",
+      "aliases": [
+        "Reykjavik"
+      ]
+    },
+    "BLR": {
+      "name": "Minsk",
+      "aliases": []
+    },
+    "PRY": {
+      "name": "Asunción",
+      "aliases": [
+        "Asuncion"
+      ]
+    },
+    "GRC": {
+      "name": "Athens",
+      "aliases": []
+    },
+    "LAO": {
+      "name": "Vientiane",
+      "aliases": []
+    },
+    "COG": {
+      "name": "Brazzaville",
+      "aliases": []
+    },
+    "ROU": {
+      "name": "Bucharest",
+      "aliases": []
+    },
+    "SLB": {
+      "name": "Honiara",
+      "aliases": []
+    },
+    "KGZ": {
+      "name": "Bishkek",
+      "aliases": []
+    },
+    "ZWE": {
+      "name": "Harare",
+      "aliases": []
+    },
+    "BFA": {
+      "name": "Ouagadougou",
+      "aliases": []
+    },
+    "PRK": {
+      "name": "Pyongyang",
+      "aliases": []
+    },
+    "TJK": {
+      "name": "Dushanbe",
+      "aliases": []
+    },
+    "BHS": {
+      "name": "Nassau",
+      "aliases": []
+    },
+    "GIN": {
+      "name": "Conakry",
+      "aliases": []
+    },
+    "SYR": {
+      "name": "Damascus",
+      "aliases": []
+    },
+    "CIV": {
+      "name": "Yamoussoukro",
+      "aliases": [
+        "Abidjan"
+      ]
+    },
+    "ERI": {
+      "name": "Asmara",
+      "aliases": []
+    },
+    "CUB": {
+      "name": "Havana",
+      "aliases": []
+    },
+    "NPL": {
+      "name": "Kathmandu",
+      "aliases": [
+        "Katmandu"
+      ]
+    },
+    "GUY": {
+      "name": "Georgetown",
+      "aliases": []
+    },
+    "GAB": {
+      "name": "Libreville",
+      "aliases": []
+    },
+    "TUN": {
+      "name": "Tunis",
+      "aliases": []
+    },
+    "HRV": {
+      "name": "Zagreb",
+      "aliases": []
+    },
+    "KOR": {
+      "name": "Seoul",
+      "aliases": []
+    },
+    "LVA": {
+      "name": "Riga",
+      "aliases": []
+    },
+    "UGA": {
+      "name": "Kampala",
+      "aliases": []
+    },
+    "URY": {
+      "name": "Montevideo",
+      "aliases": []
+    },
+    "AUT": {
+      "name": "Vienna",
+      "aliases": []
+    },
+    "BGD": {
+      "name": "Dhaka",
+      "aliases": [
+        "Dacca"
+      ]
+    },
+    "GHA": {
+      "name": "Accra",
+      "aliases": []
+    },
+    "IRL": {
+      "name": "Dublin",
+      "aliases": []
+    },
+    "HUN": {
+      "name": "Budapest",
+      "aliases": []
+    },
+    "SEN": {
+      "name": "Dakar",
+      "aliases": []
+    },
+    "MHL": {
+      "name": "Majuro",
+      "aliases": []
+    },
+    "LTU": {
+      "name": "Vilnius",
+      "aliases": []
+    },
+    "CZE": {
+      "name": "Prague",
+      "aliases": []
+    },
+    "MWI": {
+      "name": "Lilongwe",
+      "aliases": []
+    },
+    "EST": {
+      "name": "Tallinn",
+      "aliases": []
+    },
+    "AZE": {
+      "name": "Baku",
+      "aliases": []
+    },
+    "BGR": {
+      "name": "Sofia",
+      "aliases": []
+    },
+    "KHM": {
+      "name": "Phnom Penh",
+      "aliases": []
+    },
+    "VUT": {
+      "name": "Port Vila",
+      "aliases": []
+    },
+    "HND": {
+      "name": "Tegucigalpa",
+      "aliases": []
+    },
+    "GEO": {
+      "name": "Tbilisi",
+      "aliases": []
+    },
+    "SRB": {
+      "name": "Belgrade",
+      "aliases": []
+    },
+    "JOR": {
+      "name": "Amman",
+      "aliases": []
+    },
+    "NIC": {
+      "name": "Managua",
+      "aliases": []
+    },
+    "BEN": {
+      "name": "Porto-Novo",
+      "aliases": [
+        "Cotonou"
+      ]
+    },
+    "ARE": {
+      "name": "Abu Dhabi",
+      "aliases": []
+    },
+    "LBR": {
+      "name": "Monrovia",
+      "aliases": []
+    },
+    "GTM": {
+      "name": "Guatemala City",
+      "aliases": []
+    },
+    "SUR": {
+      "name": "Paramaribo",
+      "aliases": []
+    },
+    "PLW": {
+      "name": "Ngerulmud",
+      "aliases": []
+    },
+    "MDA": {
+      "name": "Chișinău",
+      "aliases": [
+        "Chisinau"
+      ]
+    },
+    "SVK": {
+      "name": "Bratislava",
+      "aliases": []
+    },
+    "BIH": {
+      "name": "Sarajevo",
+      "aliases": []
+    },
+    "PAN": {
+      "name": "Panama City",
+      "aliases": []
+    },
+    "TWN": {
+      "name": "Taipei",
+      "aliases": []
+    },
+    "CHE": {
+      "name": "Bern",
+      "aliases": [
+        "Berne"
+      ]
+    },
+    "BEL": {
+      "name": "Brussels",
+      "aliases": []
+    },
+    "CRI": {
+      "name": "San José",
+      "aliases": [
+        "San Jose"
+      ]
+    },
+    "ARM": {
+      "name": "Yerevan",
+      "aliases": []
+    },
+    "TGO": {
+      "name": "Lomé",
+      "aliases": [
+        "Lome"
+      ]
+    },
+    "SLE": {
+      "name": "Freetown",
+      "aliases": []
+    },
+    "DOM": {
+      "name": "Santo Domingo",
+      "aliases": []
+    },
+    "LKA": {
+      "name": "Sri Jayawardenepura Kotte",
+      "aliases": [
+        "Kotte",
+        "Colombo",
+        "Sri Jayawardenapura"
+      ],
+      "short": "Kotte"
+    },
+    "GNQ": {
+      "name": "Malabo",
+      "aliases": []
+    },
+    "ISR": {
+      "name": "Jerusalem",
+      "aliases": []
+    },
+    "ALB": {
+      "name": "Tirana",
+      "aliases": []
+    },
+    "CPV": {
+      "name": "Praia",
+      "aliases": []
+    },
+    "SVN": {
+      "name": "Ljubljana",
+      "aliases": []
+    },
+    "HTI": {
+      "name": "Port-au-Prince",
+      "aliases": []
+    },
+    "BTN": {
+      "name": "Thimphu",
+      "aliases": [
+        "Thimpu"
+      ]
+    },
+    "LSO": {
+      "name": "Maseru",
+      "aliases": []
+    },
+    "GNB": {
+      "name": "Bissau",
+      "aliases": []
+    },
+    "MKD": {
+      "name": "Skopje",
+      "aliases": []
+    },
+    "TLS": {
+      "name": "Dili",
+      "aliases": []
+    },
+    "TON": {
+      "name": "Nukuʻalofa",
+      "aliases": [
+        "Nukualofa",
+        "Nuku'alofa"
+      ]
+    },
+    "MNE": {
+      "name": "Podgorica",
+      "aliases": []
+    },
+    "BLZ": {
+      "name": "Belmopan",
+      "aliases": []
+    },
+    "BDI": {
+      "name": "Gitega",
+      "aliases": [
+        "Bujumbura"
+      ]
+    },
+    "RWA": {
+      "name": "Kigali",
+      "aliases": []
+    },
+    "KWT": {
+      "name": "Kuwait City",
+      "aliases": []
+    },
+    "KOS": {
+      "name": "Pristina",
+      "aliases": [
+        "Prishtina"
+      ]
+    },
+    "SLV": {
+      "name": "San Salvador",
+      "aliases": []
+    },
+    "CYP": {
+      "name": "Nicosia",
+      "aliases": []
+    },
+    "DJI": {
+      "name": "Djibouti",
+      "aliases": []
+    },
+    "LBN": {
+      "name": "Beirut",
+      "aliases": []
+    },
+    "SWZ": {
+      "name": "Mbabane",
+      "aliases": [
+        "Lobamba"
+      ]
+    },
+    "GMB": {
+      "name": "Banjul",
+      "aliases": []
+    },
+    "PSX": {
+      "name": "Ramallah",
+      "aliases": [
+        "East Jerusalem"
+      ]
+    },
+    "JAM": {
+      "name": "Kingston",
+      "aliases": []
+    },
+    "TTO": {
+      "name": "Port of Spain",
+      "aliases": []
+    },
+    "STP": {
+      "name": "São Tomé",
+      "aliases": [
+        "Sao Tome"
+      ]
+    },
+    "QAT": {
+      "name": "Doha",
+      "aliases": []
+    },
+    "COM": {
+      "name": "Moroni",
+      "aliases": []
+    },
+    "BRN": {
+      "name": "Bandar Seri Begawan",
+      "aliases": []
+    },
+    "LUX": {
+      "name": "Luxembourg",
+      "aliases": []
+    },
+    "WSM": {
+      "name": "Apia",
+      "aliases": []
+    },
+    "MUS": {
+      "name": "Port Louis",
+      "aliases": []
+    },
+    "VCT": {
+      "name": "Kingstown",
+      "aliases": []
+    },
+    "ATG": {
+      "name": "St. John's",
+      "aliases": [
+        "Saint John's",
+        "St Johns",
+        "St. Johns"
+      ]
+    },
+    "MDV": {
+      "name": "Malé",
+      "aliases": [
+        "Male"
+      ]
+    },
+    "MLT": {
+      "name": "Valletta",
+      "aliases": []
+    },
+    "DMA": {
+      "name": "Roseau",
+      "aliases": []
+    },
+    "KNA": {
+      "name": "Basseterre",
+      "aliases": []
+    },
+    "AND": {
+      "name": "Andorra la Vella",
+      "aliases": []
+    },
+    "BHR": {
+      "name": "Manama",
+      "aliases": []
+    },
+    "LCA": {
+      "name": "Castries",
+      "aliases": []
+    },
+    "SGP": {
+      "name": "Singapore",
+      "aliases": []
+    },
+    "BRB": {
+      "name": "Bridgetown",
+      "aliases": []
+    },
+    "GRD": {
+      "name": "St. George's",
+      "aliases": [
+        "Saint George's",
+        "St Georges",
+        "St. Georges"
+      ]
+    },
+    "LIE": {
+      "name": "Vaduz",
+      "aliases": []
+    },
+    "SYC": {
+      "name": "Victoria",
+      "aliases": []
+    },
+    "SMR": {
+      "name": "San Marino",
+      "aliases": []
+    },
+    "MCO": {
+      "name": "Monaco",
+      "aliases": []
+    },
+    "NRU": {
+      "name": "Yaren",
+      "aliases": []
+    },
+    "TUV": {
+      "name": "Funafuti",
+      "aliases": []
+    },
+    "VAT": {
+      "name": "Vatican City",
+      "aliases": []
+    }
+  },
+  "hints": [
+    {
+      "name": "The Hague",
+      "aliases": [
+        "Hague"
+      ],
+      "note": "The Hague is the seat of government, not the capital in this quiz."
+    },
+    {
+      "name": "Tel Aviv",
+      "aliases": [
+        "Tel Aviv-Yafo"
+      ],
+      "note": "Tel Aviv isn't the capital in this quiz."
+    }
+  ]
+}

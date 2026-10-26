@@ -1,4 +1,8 @@
 import { createMatcher } from "./match.mjs";
+import { COPY, applyAnswers, fill, gameMode, namesTheCountryInstead } from "./mode.mjs";
+
+const modeName = gameMode();
+const copy = COPY[modeName];
 
 const CONTINENTS = [
   "North America",
@@ -45,6 +49,34 @@ let maxK = 160;
 let endArmed = false;
 let cullFrame = 0;
 let autoTimer = 0;
+
+function applyCopy(total) {
+  const text = (template) => (total == null ? template : fill(template, total));
+  document.title = copy.documentTitle;
+  document.querySelector("#brand-kicker").textContent = copy.kicker;
+  document.querySelector("#guess-label").textContent = copy.label;
+  input.placeholder = copy.placeholder;
+  document.querySelector("#progress-blurb").textContent = text(copy.progress);
+  document.querySelector("#foot").textContent = text(copy.foot);
+  document.querySelector("#intro-kicker").textContent = copy.introKicker;
+  document.querySelector("#intro-heading").textContent = copy.introTitle;
+  document.querySelector("#intro-copy").textContent = text(copy.intro);
+  svg.setAttribute("aria-label", copy.mapLabel);
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[ch]));
+}
+
+function countryInstead(raw) {
+  return namesTheCountryInstead(raw, matcher, data.countries, modeName);
+}
 
 function el(name, attrs = {}) {
   const node = document.createElementNS(SVG_NS, name);
@@ -186,7 +218,7 @@ function renderCounts() {
   document.title =
     state === "playing"
       ? `${found.size}/${data.countries.length} · Fifteen Minutes`
-      : "Fifteen Minutes — Name every country";
+      : copy.documentTitle;
 }
 
 function buildMap() {
@@ -312,6 +344,10 @@ function onGuess(raw) {
   if (result.status === "empty") return;
   if (result.status === "correct") {
     const country = byId.get(result.id);
+    if (countryInstead(raw)) {
+      setFeedback("That's a country. Name its capital.", "hint");
+      return;
+    }
     if (found.has(country.id)) {
       setFeedback(`${country.name} is already on the map.`, "hint");
       return;
@@ -322,6 +358,10 @@ function onGuess(raw) {
   }
   if (result.status === "ambiguous" || result.status === "hint") {
     setFeedback(result.message, "hint");
+    return;
+  }
+  if (countryInstead(raw)) {
+    setFeedback("That's a country. Name its capital.", "hint");
     return;
   }
   setFeedback("No match. Check the spelling.", "bad");
@@ -379,7 +419,9 @@ function finish(reason) {
   const total = data.countries.length;
   const missed = data.countries
     .filter((country) => !found.has(country.id))
-    .sort((a, b) => a.name.localeCompare(b.name, "en"));
+    .sort((a, b) => a.place.localeCompare(b.place, "en"));
+  const missedLabel = (country) =>
+    modeName === "capitals" ? `${country.place} — ${country.name}` : country.name;
   const perfect = missed.length === 0;
   const timeNote = perfect
     ? `with ${formatTime(left)} remaining`
@@ -393,20 +435,20 @@ function finish(reason) {
     return `
       <section>
         <h3>${continent}</h3>
-        <ul>${names.map((country) => `<li>${country.name}</li>`).join("")}</ul>
+        <ul>${names.map((country) => `<li>${escapeHtml(missedLabel(country))}</li>`).join("")}</ul>
       </section>
     `;
   }).join("");
 
   resultsBody.innerHTML = `
     <p class="kicker">${perfect ? "Clear atlas" : "Time's up"}</p>
-    <h2 id="results-heading">${perfect ? "Every country" : "Final score"}</h2>
+    <h2 id="results-heading">${perfect ? copy.perfectHeading : "Final score"}</h2>
     <p class="final-score">${found.size} <span>/ ${total}</span></p>
-    <p class="results-note">You named ${found.size} of ${total} countries ${timeNote}.</p>
+    <p class="results-note">You named ${found.size} of ${total} ${copy.noun} ${timeNote}.</p>
     ${
       perfect
         ? `<p class="results-note">Nothing missed.</p>`
-        : `<h3 class="missed-title">Countries you missed</h3><div class="missed-grid">${groups}</div>`
+        : `<h3 class="missed-title">${copy.missedTitle}</h3><div class="missed-grid">${groups}</div>`
     }
   `;
   results.classList.remove("hidden");
@@ -521,10 +563,20 @@ function wireMap() {
 
 async function main() {
   wireMap();
+  applyCopy();
   try {
     const response = await fetch("data/world.json");
     if (!response.ok) throw new Error(`Map data failed (${response.status})`);
     data = await response.json();
+    if (modeName === "capitals") {
+      const capitalsResponse = await fetch("data/capitals.json");
+      if (!capitalsResponse.ok) throw new Error(`Capital data failed (${capitalsResponse.status})`);
+      const capitals = await capitalsResponse.json();
+      applyAnswers(data.countries, capitals.capitals, modeName);
+      data.territories = [...data.territories, ...(capitals.hints || [])];
+    } else {
+      applyAnswers(data.countries, null, modeName);
+    }
   } catch (error) {
     startBtn.disabled = true;
     document.querySelector("#intro-copy").textContent =
@@ -536,7 +588,7 @@ async function main() {
   matcher = createMatcher(data.countries, data.territories);
   byId = new Map(data.countries.map((country) => [country.id, country]));
   totalEl.textContent = String(data.countries.length);
-  document.querySelector("#intro-total").textContent = String(data.countries.length);
+  applyCopy(data.countries.length);
   buildMap();
   buildBoard();
   renderCounts();
