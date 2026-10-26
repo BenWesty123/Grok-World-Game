@@ -44,6 +44,7 @@ let minK = 0.05;
 let maxK = 160;
 let endArmed = false;
 let cullFrame = 0;
+let autoTimer = 0;
 
 function el(name, attrs = {}) {
   const node = document.createElementNS(SVG_NS, name);
@@ -257,10 +258,20 @@ function buildBoard() {
   }
 }
 
+function markContinent(continent) {
+  const countries = data.countries.filter((country) => country.continent === continent);
+  const complete = countries.every((country) => found.has(country.id));
+  for (const country of countries) {
+    country.path.classList.toggle("continent-complete", complete);
+    country.pin.classList.toggle("continent-complete", complete);
+  }
+}
+
 function accept(country) {
   found.add(country.id);
   syncCountry(country);
   country.path.classList.add("just-found");
+  markContinent(country.continent);
   renderCounts();
   scoreEl.classList.remove("bump");
   void scoreEl.offsetWidth;
@@ -268,6 +279,31 @@ function accept(country) {
   setFeedback(`Yes — ${country.name}`, "ok");
   scheduleCull();
   if (found.size === data.countries.length) finish("complete");
+}
+
+function clearAutoAccept() {
+  clearTimeout(autoTimer);
+  autoTimer = 0;
+}
+
+function tryAutoAccept() {
+  if (state !== "playing") return;
+  const raw = input.value;
+  const id = matcher.exactId(raw);
+  if (!id || found.has(id)) return;
+  const run = () => {
+    if (state !== "playing" || input.value !== raw || found.has(id)) return;
+    accept(byId.get(id));
+    // Clearing during the input event is overwritten by the keystroke that just landed.
+    setTimeout(() => {
+      if (input.value === raw) input.value = "";
+    }, 0);
+  };
+  if (matcher.hasLongerName(raw)) {
+    autoTimer = setTimeout(run, 500);
+    return;
+  }
+  run();
 }
 
 function onGuess(raw) {
@@ -301,6 +337,7 @@ function tick() {
 function startGame() {
   state = "playing";
   found = new Set();
+  clearAutoAccept();
   endsAt = Date.now() + DURATION;
   intro.classList.add("hidden");
   results.classList.add("hidden");
@@ -314,6 +351,7 @@ function startGame() {
   input.value = "";
   setFeedback("", "");
   for (const country of data.countries) syncCountry(country);
+  for (const continent of CONTINENTS) markContinent(continent);
   renderCounts();
   timeEl.classList.remove("urgent");
   timeEl.textContent = formatTime(DURATION);
@@ -327,6 +365,7 @@ function finish(reason) {
   if (state === "ended") return;
   state = "ended";
   clearInterval(timer);
+  clearAutoAccept();
   const left = Math.max(0, endsAt - Date.now());
   timeEl.textContent = formatTime(left);
   endBtn.disabled = true;
@@ -378,6 +417,7 @@ function resetToIntro() {
   state = "ready";
   found = new Set();
   clearInterval(timer);
+  clearAutoAccept();
   endsAt = 0;
   results.classList.add("hidden");
   resultsBtn.classList.add("hidden");
@@ -392,6 +432,7 @@ function resetToIntro() {
   timeEl.textContent = "15:00";
   timeEl.classList.remove("urgent");
   for (const country of data.countries) syncCountry(country);
+  for (const continent of CONTINENTS) markContinent(continent);
   renderCounts();
   fit();
 }
@@ -505,8 +546,13 @@ async function main() {
   startBtn.disabled = false;
 
   startBtn.addEventListener("click", startGame);
+  input.addEventListener("input", () => {
+    clearAutoAccept();
+    tryAutoAccept();
+  });
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    clearAutoAccept();
     onGuess(input.value);
   });
   endBtn.addEventListener("click", () => {

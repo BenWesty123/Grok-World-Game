@@ -76,6 +76,15 @@ expectId("the gambia", "GMB");
 expectId("phillipines", "PHL");
 expectId("argintina", "ARG");
 
+assert.equal(matcher.exactId("France"), "FRA");
+assert.equal(matcher.exactId("usa"), "USA");
+assert.equal(matcher.exactId("fran"), null);
+assert.equal(matcher.exactId("argintina"), null);
+assert.equal(matcher.hasLongerName("guinea"), true);
+assert.equal(matcher.hasLongerName("dominica"), true);
+assert.equal(matcher.hasLongerName("france"), false);
+assert.equal(matcher.hasLongerName("usa"), false);
+
 assert.equal(matcher("congo").status, "ambiguous");
 assert.equal(matcher("korea").status, "ambiguous");
 assert.equal(matcher("united").status, "ambiguous");

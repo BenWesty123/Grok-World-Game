@@ -91,7 +91,7 @@ export function createMatcher(countries, territories = []) {
     }
   }
 
-  return function guess(raw) {
+  function guess(raw) {
     const key = normalize(raw);
     if (!key || key.length < 2) return { status: "empty" };
     if (exact.has(key)) return { status: "correct", id: exact.get(key) };
@@ -127,5 +127,24 @@ export function createMatcher(countries, territories = []) {
     }
 
     return { status: "unknown" };
+  }
+
+  guess.exactId = (raw) => {
+    const key = normalize(raw);
+    if (!key || !exact.has(key)) return null;
+    return exact.get(key);
   };
+
+  guess.hasLongerName = (raw) => {
+    const key = normalize(raw);
+    if (!key) return false;
+    for (const entry of entries) {
+      if (entry.keys.some((candidate) => candidate.length > key.length && candidate.startsWith(key))) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  return guess;
 }

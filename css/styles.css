@@ -164,6 +164,8 @@ button, input { font: inherit; }
 
 .country.found { fill: #efc56d; stroke: #8d6b32; }
 .country.found:hover { fill: #f6d48a; }
+.country.found.continent-complete { fill: #3eaf6e; stroke: #1d6a3e; }
+.country.found.continent-complete:hover { fill: #58c484; }
 .country.missed { fill: #efc8cb; stroke: #8d5960; }
 .country.missed:hover { fill: #f6d5d7; }
 .country.just-found { filter: brightness(1.08); }
@@ -192,6 +194,8 @@ button, input { font: inherit; }
 .pin .dot { fill: #3a2e22; }
 .pin.found text { fill: #2c220f; stroke: #f8e7c0; }
 .pin.found .dot { fill: #6d5420; }
+.pin.continent-complete text { fill: #102e1c; stroke: #dff6e8; }
+.pin.continent-complete .dot { fill: #1d6a3e; }
 .pin.missed text { fill: #6e2430; stroke: #fde8ea; }
 .pin.missed .dot { fill: #8a3a46; }
 
@@ -256,6 +260,7 @@ button, input { font: inherit; }
 
 .swatch.q { background: #fbf6ec; }
 .swatch.found { background: #efc56d; }
+.swatch.complete { background: #3eaf6e; }
 .swatch.miss { background: #efc8cb; }
 
 .hidden { display: none !important; }
