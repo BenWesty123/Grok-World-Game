@@ -271,7 +271,13 @@ button, input { font: inherit; }
 
 .pin text.q { font-size: 16px; font-weight: 700; }
 .pin text.place { font-size: 12px; font-weight: 650; }
-.pin text.culled, .pin .dot.culled { opacity: 0; }
+.pin text.city {
+  font-size: 11px;
+  font-weight: 650;
+  fill: #6d5420;
+  stroke: #f8e7c0;
+}
+.pin text.culled, .pin .label.culled, .pin .dot.culled { opacity: 0; }
 .pin .dot { fill: #3a2e22; }
 .pin.found text { fill: #2c220f; stroke: #f8e7c0; }
 .pin.found .dot { fill: #6d5420; }
@@ -279,6 +285,15 @@ button, input { font: inherit; }
 .pin.continent-complete .dot { fill: #1d6a3e; }
 .pin.missed text { fill: #6e2430; stroke: #fde8ea; }
 .pin.missed .dot { fill: #8a3a46; }
+.pin.found text.place,
+.pin.continent-complete text.place,
+.pin.missed text.place {
+  fill: #3a2e22;
+  stroke: rgba(251, 246, 236, 0.95);
+}
+.pin.found text.city { fill: #6d5420; stroke: #f8e7c0; }
+.pin.continent-complete text.city { fill: #1d6a3e; stroke: #dff6e8; }
+.pin.missed text.city { fill: #6e2430; stroke: #fde8ea; }
 
 .map-tools, .map-hint, .legend {
   position: absolute;
@@ -486,6 +501,20 @@ button, input { font: inherit; }
 .cell.prompt {
   color: var(--muted);
 }
+
+.cell-place { color: var(--muted); }
+
+.cell.found .cell-place { color: var(--ink); }
+
+.cell-city:empty { display: none; }
+
+.cell-city {
+  margin-top: 1px;
+  color: var(--gold);
+  font-weight: 650;
+}
+
+.cell.missed .cell-city { color: #e7a8a4; }
 
 .foot {
   margin: 14px 2px 0;

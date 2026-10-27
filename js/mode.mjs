@@ -26,12 +26,12 @@ export const COPY = {
     label: "Capital city",
     placeholder: "Name a capital",
     progress:
-      "Each column is a continent. Every cell names a country until you name its capital.",
+      "Each column is a continent. The country stays in its cell, and the capital appears underneath when you name it.",
     foot: "{n} capitals, one for each country: the UN members, plus Vatican City, Palestine, Kosovo, and Taiwan. Where a country has more than one capital, any accepted name counts. Territories are drawn with their country.",
     introKicker: "A blank atlas",
     introTitle: "Name every capital.",
     intro:
-      "You have 15 minutes to name the capital of all {n} countries. Each country is labeled on the map and in the table. A correct capital replaces that name. A full capital name is accepted as soon as you finish typing it. Press Enter for anything else. Zoom and drag to reach the small ones. A continent turns green when every capital in it is named.",
+      "You have 15 minutes to name the capital of all {n} countries. Each country stays labeled on the map and in the table. A correct capital appears underneath that name. A full capital name is accepted as soon as you finish typing it. Press Enter for anything else. Zoom and drag to reach the small ones. A continent turns green when every capital in it is named.",
     noun: "capitals",
     perfectHeading: "Every capital",
     missedTitle: "Capitals you missed",

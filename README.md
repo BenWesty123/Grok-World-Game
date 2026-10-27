@@ -2,7 +2,7 @@
 
 A browser game: you have 15 minutes to name every country in the world, or the capital city of every country.
 
-The home page chooses the round. In the country round, a question mark marks each country that is still open. In the capitals round, the country name stays visible until you name its capital. A correct guess replaces that mark with the answer and fills that cell in the continent table. Scroll to zoom and drag to pan, which is how the small ones become readable. When the clock ends, you get your score and the full list of what you missed.
+The home page chooses the round. In the country round, a question mark marks each country that is still open. In the capitals round, the country name stays on the map and in the table, and the capital appears underneath once you name it. Scroll to zoom and drag to pan, which is how the small ones become readable. When the clock ends, you get your score and the full list of what you missed.
 
 The quiz has 197 countries: the UN members, plus Vatican City, Palestine, Kosovo, and Taiwan. Dependent territories are drawn as part of the country that governs them. In the capitals round, a country with more than one capital accepts any of the listed names.
 

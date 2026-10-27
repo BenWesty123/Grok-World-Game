@@ -193,26 +193,31 @@ function cullLabels() {
   }
 }
 
-function openLabel(country) {
-  return modeName === "capitals" ? country.placeShort : "?";
-}
-
 function syncCountry(country) {
   const named = found.has(country.id) || state === "ended";
-  country.text.textContent = named ? country.short : openLabel(country);
-  country.text.classList.toggle("q", !named && modeName !== "capitals");
-  country.text.classList.toggle("place", !named && modeName === "capitals");
-  country.pin.classList.toggle("found", found.has(country.id));
-  country.pin.classList.toggle("missed", state === "ended" && !found.has(country.id));
-  country.path.classList.toggle("found", found.has(country.id));
-  country.path.classList.toggle("missed", state === "ended" && !found.has(country.id));
+  const got = found.has(country.id);
+  if (modeName === "capitals") {
+    country.placeLine.textContent = country.placeShort;
+    country.cityLine.textContent = named ? country.short : "";
+  } else {
+    country.text.textContent = named ? country.short : "?";
+    country.text.classList.toggle("q", !named);
+  }
+  country.pin.classList.toggle("found", got);
+  country.pin.classList.toggle("missed", state === "ended" && !got);
+  country.path.classList.toggle("found", got);
+  country.path.classList.toggle("missed", state === "ended" && !got);
   country.path.classList.remove("just-found");
   const cell = country.cell;
-  cell.classList.toggle("found", found.has(country.id));
-  cell.classList.toggle("prompt", modeName === "capitals" && !found.has(country.id));
-  if (found.has(country.id)) cell.textContent = country.name;
-  else if (modeName === "capitals") cell.textContent = country.place;
-  else cell.textContent = "";
+  cell.classList.toggle("found", got);
+  cell.classList.toggle("prompt", modeName === "capitals" && !got);
+  cell.classList.toggle("missed", state === "ended" && !got);
+  if (modeName === "capitals") {
+    country.cellPlace.textContent = country.place;
+    country.cellCity.textContent = named ? country.name : "";
+  } else {
+    cell.textContent = got ? country.name : "";
+  }
 }
 
 function renderCounts() {
@@ -259,18 +264,40 @@ function buildMap() {
     lands.append(path);
     const pin = el("g", { class: "pin" });
     const dot = el("circle", { class: "dot", r: "2.7" });
-    const text = el("text", {
-      class: modeName === "capitals" ? "place" : "q",
-      "text-anchor": "middle",
-      "dominant-baseline": "central",
-    });
-    text.textContent = openLabel(country);
-    pin.append(dot, text);
+    if (modeName === "capitals") {
+      const label = el("g", { class: "label" });
+      const place = el("text", {
+        class: "place",
+        y: "0",
+        "text-anchor": "middle",
+        "dominant-baseline": "central",
+      });
+      place.textContent = country.placeShort;
+      const city = el("text", {
+        class: "city",
+        y: "9",
+        "text-anchor": "middle",
+        "dominant-baseline": "hanging",
+      });
+      label.append(place, city);
+      pin.append(dot, label);
+      country.text = label;
+      country.placeLine = place;
+      country.cityLine = city;
+    } else {
+      const text = el("text", {
+        class: "q",
+        "text-anchor": "middle",
+        "dominant-baseline": "central",
+      });
+      text.textContent = "?";
+      pin.append(dot, text);
+      country.text = text;
+    }
     pins.append(pin);
     country.path = path;
     country.pin = pin;
     country.dot = dot;
-    country.text = text;
   }
 
   world.append(ocean, grat, lands, pins);
@@ -299,6 +326,16 @@ function buildBoard() {
       const cell = document.createElement("div");
       cell.className = "cell";
       cell.dataset.id = country.id;
+      if (modeName === "capitals") {
+        const place = document.createElement("div");
+        place.className = "cell-place";
+        place.textContent = country.place;
+        const city = document.createElement("div");
+        city.className = "cell-city";
+        cell.append(place, city);
+        country.cellPlace = place;
+        country.cellCity = city;
+      }
       cells.append(cell);
       country.cell = cell;
     }
