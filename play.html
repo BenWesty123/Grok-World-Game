@@ -4,7 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fifteen Minutes</title>
-  <meta name="description" content="Fifteen minutes to name every country, or every capital. Pick a round from the home page.">
+  <meta name="description" content="Fifteen minutes to name every country, every capital, or every flag.">
+  <script>
+    if (new URLSearchParams(location.search).get("game") === "flags") {
+      document.documentElement.classList.add("mode-flags");
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;1,9..144,560&family=Outfit:wght@420;560;650&display=swap" rel="stylesheet">
@@ -31,6 +36,14 @@
   </header>
 
   <main>
+    <section class="flag-stage" id="flag-stage" aria-label="Country flag">
+      <p class="flag-status" id="flag-status"></p>
+      <div class="flag-frame">
+        <img id="flag-img" alt="Country flag">
+      </div>
+      <p class="flag-credit">Flag artwork from flag-icons.</p>
+    </section>
+
     <section class="map-card" aria-label="World map">
       <svg id="map" role="img" aria-label="World map">
         <g id="world"></g>
@@ -53,6 +66,7 @@
       <div class="guess-row">
         <label for="guess" class="sr-only" id="guess-label">Answer</label>
         <input id="guess" name="answer" type="text" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" disabled>
+        <button type="button" class="ghost hidden" id="skip-btn" disabled>Skip</button>
         <button type="submit" id="guess-btn" disabled>Guess</button>
       </div>
       <p id="feedback" class="feedback" aria-live="polite"></p>
@@ -89,6 +103,6 @@
     </div>
   </div>
 
-  <script type="module" src="js/game.mjs"></script>
+  <script type="module" src="js/boot.mjs"></script>
 </body>
 </html>

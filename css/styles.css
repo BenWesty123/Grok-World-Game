@@ -98,7 +98,7 @@ button, input { font: inherit; }
 
 .choices {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   width: 100%;
 }
@@ -390,6 +390,8 @@ button, input { font: inherit; }
 
 .guess input::placeholder { color: #8ea3af; }
 
+#skip-btn { border-radius: 12px; padding: 10px 14px; }
+
 .guess button[type="submit"] {
   background: var(--gold);
   color: var(--gold-ink);
@@ -614,6 +616,70 @@ button, input { font: inherit; }
   font-size: 0.92rem;
 }
 
+.missed-flag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.missed-flag img {
+  width: 36px;
+  height: 27px;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #d7e4ea;
+  flex: none;
+}
+
+.flag-stage {
+  display: none;
+  justify-items: center;
+  align-content: center;
+  gap: 14px;
+  min-height: calc(100vh - 230px);
+  padding: 22px 18px 8px;
+}
+
+html.mode-flags .map-card,
+html.mode-flags .progress { display: none; }
+
+html.mode-flags .flag-stage { display: grid; }
+
+.flag-status {
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.flag-frame {
+  width: min(640px, 92vw);
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    #10202b;
+  background-size: 28px 28px;
+  border: 1px solid rgba(228, 194, 122, 0.35);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.flag-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.flag-frame img:not([src]) { visibility: hidden; }
+
+.flag-credit {
+  margin: 0;
+  color: #7f95a1;
+  font-size: 0.78rem;
+}
+
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
@@ -638,6 +704,7 @@ button, input { font: inherit; }
   .legend { display: none; }
   .card h2 { font-size: 2rem; }
   .choices { grid-template-columns: 1fr; }
+  html.mode-flags .flag-stage { min-height: calc(100vh - 250px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
