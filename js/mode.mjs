@@ -26,16 +26,16 @@ export const COPY = {
     label: "Capital city",
     placeholder: "Name a capital",
     progress:
-      "Each column is a continent. Empty cells are capitals you haven't named. A capital fills its cell when you get it right.",
+      "Each column is a continent. Every cell names a country until you name its capital.",
     foot: "{n} capitals, one for each country: the UN members, plus Vatican City, Palestine, Kosovo, and Taiwan. Where a country has more than one capital, any accepted name counts. Territories are drawn with their country.",
     introKicker: "A blank atlas",
     introTitle: "Name every capital.",
     intro:
-      "You have 15 minutes to name the capital of all {n} countries. A question mark sits on each country until you name its capital. A full capital name is accepted as soon as you finish typing it. Press Enter for anything else. Zoom and drag to reach the small ones. A continent turns green when every capital in it is named.",
+      "You have 15 minutes to name the capital of all {n} countries. Each country is labeled on the map and in the table. A correct capital replaces that name. A full capital name is accepted as soon as you finish typing it. Press Enter for anything else. Zoom and drag to reach the small ones. A continent turns green when every capital in it is named.",
     noun: "capitals",
     perfectHeading: "Every capital",
     missedTitle: "Capitals you missed",
-    mapLabel: "World map. Each country is marked until you name its capital.",
+    mapLabel: "World map. Each country is labeled. Name its capital.",
   },
 };
 
@@ -52,6 +52,7 @@ export function fill(template, total) {
 export function applyAnswers(countries, capitalsById, mode) {
   for (const country of countries) {
     country.place = country.name;
+    country.placeShort = country.short;
     country.placeAliases = [...(country.aliases || [])];
     if (mode !== "capitals") continue;
     const capital = capitalsById[country.id];

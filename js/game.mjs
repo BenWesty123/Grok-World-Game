@@ -193,10 +193,15 @@ function cullLabels() {
   }
 }
 
+function openLabel(country) {
+  return modeName === "capitals" ? country.placeShort : "?";
+}
+
 function syncCountry(country) {
   const named = found.has(country.id) || state === "ended";
-  country.text.textContent = named ? country.short : "?";
-  country.text.classList.toggle("q", !named);
+  country.text.textContent = named ? country.short : openLabel(country);
+  country.text.classList.toggle("q", !named && modeName !== "capitals");
+  country.text.classList.toggle("place", !named && modeName === "capitals");
   country.pin.classList.toggle("found", found.has(country.id));
   country.pin.classList.toggle("missed", state === "ended" && !found.has(country.id));
   country.path.classList.toggle("found", found.has(country.id));
@@ -204,7 +209,10 @@ function syncCountry(country) {
   country.path.classList.remove("just-found");
   const cell = country.cell;
   cell.classList.toggle("found", found.has(country.id));
-  cell.textContent = found.has(country.id) ? country.name : "";
+  cell.classList.toggle("prompt", modeName === "capitals" && !found.has(country.id));
+  if (found.has(country.id)) cell.textContent = country.name;
+  else if (modeName === "capitals") cell.textContent = country.place;
+  else cell.textContent = "";
 }
 
 function renderCounts() {
@@ -251,8 +259,12 @@ function buildMap() {
     lands.append(path);
     const pin = el("g", { class: "pin" });
     const dot = el("circle", { class: "dot", r: "2.7" });
-    const text = el("text", { class: "q", "text-anchor": "middle", "dominant-baseline": "central" });
-    text.textContent = "?";
+    const text = el("text", {
+      class: modeName === "capitals" ? "place" : "q",
+      "text-anchor": "middle",
+      "dominant-baseline": "central",
+    });
+    text.textContent = openLabel(country);
     pin.append(dot, text);
     pins.append(pin);
     country.path = path;
@@ -268,7 +280,11 @@ function buildBoard() {
   for (const continent of CONTINENTS) {
     const countries = data.countries
       .filter((country) => country.continent === continent)
-      .sort((a, b) => a.name.localeCompare(b.name, "en"));
+      .sort((a, b) => {
+        const left = modeName === "capitals" ? a.place : a.name;
+        const right = modeName === "capitals" ? b.place : b.name;
+        return left.localeCompare(right, "en");
+      });
     const section = document.createElement("section");
     section.className = "continent";
     section.innerHTML = `

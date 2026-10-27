@@ -29,7 +29,16 @@ for (const country of countries) {
     assert.equal(matcher.exactId(alias), country.id, alias);
   }
   assert.equal(country.place.length > 0, true);
+  assert.equal(country.placeShort.length > 0, true);
 }
+
+const france = byId.get("FRA");
+assert.equal(france.place, "France");
+assert.equal(france.placeShort, "France");
+assert.equal(france.short, "Paris");
+const states = byId.get("USA");
+assert.equal(states.placeShort, "United States");
+assert.equal(states.short, "Washington");
 
 function expectId(input, id) {
   const result = matcher(input);
