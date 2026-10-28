@@ -643,7 +643,11 @@ button, input { font: inherit; }
 html.mode-flags .map-card,
 html.mode-flags .progress { display: none; }
 
-html.mode-flags .flag-stage { display: grid; }
+html.mode-flags .flag-stage {
+  display: grid;
+  align-content: start;
+  min-height: 0;
+}
 
 .flag-status {
   margin: 0;
@@ -652,7 +656,7 @@ html.mode-flags .flag-stage { display: grid; }
 }
 
 .flag-frame {
-  width: min(640px, 92vw);
+  width: min(560px, 88vw, calc(42vh * 4 / 3));
   aspect-ratio: 4 / 3;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
@@ -678,6 +682,49 @@ html.mode-flags .flag-stage { display: grid; }
   margin: 0;
   color: #7f95a1;
   font-size: 0.78rem;
+}
+
+.flag-found {
+  width: min(920px, 94vw);
+}
+
+.flag-found h2 {
+  margin: 0 0 8px;
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 560;
+  font-size: 1.35rem;
+  text-align: center;
+}
+
+.flag-found-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flag-found-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px 6px 6px;
+  background: var(--bg-raise);
+  border: 1px solid rgba(228, 194, 122, 0.35);
+  border-radius: 12px;
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.flag-found-item img {
+  width: 42px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: #d7e4ea;
+  flex: none;
 }
 
 @keyframes shake {

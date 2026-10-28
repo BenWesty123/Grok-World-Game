@@ -29,6 +29,8 @@ const reviewBtn = document.querySelector("#review-btn");
 const againBtn = document.querySelector("#again-btn");
 const flagImg = document.querySelector("#flag-img");
 const flagStatus = document.querySelector("#flag-status");
+const foundList = document.querySelector("#flag-found-list");
+const foundSection = document.querySelector("#flag-found");
 
 let data = null;
 let codes = null;
@@ -98,6 +100,24 @@ function renderScore() {
       : "Fifteen Minutes — Name every flag";
 }
 
+function clearFound() {
+  foundList.replaceChildren();
+  foundSection.hidden = true;
+}
+
+function remember(country) {
+  const item = document.createElement("li");
+  item.className = "flag-found-item";
+  const img = document.createElement("img");
+  img.src = `flags/${codes[country.id]}.svg`;
+  img.alt = "";
+  const name = document.createElement("span");
+  name.textContent = country.name;
+  item.append(img, name);
+  foundList.append(item);
+  foundSection.hidden = false;
+}
+
 function showFlag() {
   const country = current();
   if (!country) {
@@ -116,6 +136,7 @@ function clearAutoAccept() {
 
 function accept(country) {
   found.add(country.id);
+  remember(country);
   queue.splice(index, 1);
   if (index >= queue.length) index = 0;
   scoreEl.classList.remove("bump");
@@ -174,7 +195,7 @@ function onGuess(raw) {
       input.value = "";
       return;
     }
-    setFeedback(`That's ${byId.get(result.id).name}.`, "hint");
+    setFeedback("Not this flag.", "bad");
     return;
   }
   if (result.status === "ambiguous" || result.status === "hint") {
@@ -226,6 +247,7 @@ function startGame() {
   skipBtn.disabled = false;
   input.value = "";
   setFeedback("", "");
+  clearFound();
   timeEl.classList.remove("urgent");
   timeEl.textContent = formatTime(DURATION);
   clearInterval(timer);
@@ -310,6 +332,7 @@ function resetToIntro() {
   input.value = "";
   setFeedback("", "");
   flagImg.removeAttribute("src");
+  clearFound();
   timeEl.textContent = "15:00";
   timeEl.classList.remove("urgent");
   renderScore();
@@ -323,7 +346,7 @@ function applyCopy(total) {
   document.querySelector("#intro-kicker").textContent = "One flag at a time";
   document.querySelector("#intro-heading").textContent = "Name the flag.";
   document.querySelector("#intro-copy").textContent =
-    `You have 15 minutes to name all ${total} flags. A flag appears, and you name its country. A full name is accepted as soon as you finish typing it. Press Enter for anything else. Skip leaves that flag for later.`;
+    `You have 15 minutes to name all ${total} flags. A flag appears, and you name its country. A full name is accepted as soon as you finish typing it. Press Enter for anything else. Skip, or the right arrow, leaves that flag for later. Each one you name stays listed underneath.`;
   reviewBtn.textContent = "Close";
 }
 
@@ -363,6 +386,7 @@ async function main() {
   startBtn.addEventListener("click", startGame);
   input.addEventListener("input", () => {
     clearAutoAccept();
+    if (feedback.classList.contains("hint") || feedback.classList.contains("bad")) setFeedback("", "");
     tryAutoAccept();
   });
   form.addEventListener("submit", (event) => {
@@ -385,6 +409,12 @@ async function main() {
       return;
     }
     finish("giveup");
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowRight" || event.repeat || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (state !== "playing" || advancing) return;
+    event.preventDefault();
+    skip();
   });
   reviewBtn.addEventListener("click", () => results.classList.add("hidden"));
   resultsBtn.addEventListener("click", () => results.classList.remove("hidden"));
